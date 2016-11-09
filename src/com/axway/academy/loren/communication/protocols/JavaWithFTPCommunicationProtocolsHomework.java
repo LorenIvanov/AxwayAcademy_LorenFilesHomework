@@ -20,7 +20,7 @@ import org.apache.commons.net.ftp.FTPFile;
 public class JavaWithFTPCommunicationProtocolsHomework {
 
 	private Scanner userInput = new Scanner(System.in);
-	private static FTPClient client = null;
+	private FTPClient client = null;
 
 	/**
 	 * Initialization credentials
@@ -174,16 +174,13 @@ public class JavaWithFTPCommunicationProtocolsHomework {
 	}
 
 	/**
-	 * Creating an instance of JavaWithFTPCommunicationProtocolsHomework class
-	 * and working with its methods
-	 * 
-	 * @param args
+	 * Core method of JavaWithFTPCommunicationProtocolsHomework class which
+	 * calls JavaWithFTPCommunicationProtocolsHomework methods
 	 */
-	public static void main(String[] args) {
-		JavaWithFTPCommunicationProtocolsHomework obj = new JavaWithFTPCommunicationProtocolsHomework();
+	protected void execute() {
 		try {
-			obj.FTPConnection();
-			obj.CRUDmenu();
+			FTPConnection();
+			CRUDmenu();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -197,5 +194,17 @@ public class JavaWithFTPCommunicationProtocolsHomework {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Creating an instance of JavaWithFTPCommunicationProtocolsHomework class
+	 * and working with its methods
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		JavaWithFTPCommunicationProtocolsHomework obj = new JavaWithFTPCommunicationProtocolsHomework();
+		obj.execute();
+
 	}
 }

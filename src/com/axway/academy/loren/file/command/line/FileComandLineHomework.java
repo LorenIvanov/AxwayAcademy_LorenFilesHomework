@@ -26,7 +26,10 @@ public class FileComandLineHomework {
 	private Path file = null;
 	private Properties replacePairs = new Properties();
 
-	public FileComandLineHomework() {
+	/**
+	 * Starting to work with file and file location
+	 */
+	protected void execute() {
 		int userChoise = 0;
 		System.out.println("Please enter file location.");
 		FILE_LOCATION = userInput.nextLine();
@@ -41,7 +44,7 @@ public class FileComandLineHomework {
 			userChoise = userIntegerInputCheck();
 		}
 		if (userChoise == 1) {
-			new FileComandLineHomework();
+			execute();
 		}
 	}
 
@@ -204,6 +207,8 @@ public class FileComandLineHomework {
 	}
 
 	public static void main(String[] args) {
-		new FileComandLineHomework();
+		FileComandLineHomework obj = new FileComandLineHomework();
+		obj.execute();
+
 	}
 }
