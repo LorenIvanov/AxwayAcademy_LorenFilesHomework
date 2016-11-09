@@ -1,4 +1,4 @@
-package com.axway.academy.loren;
+package com.axway.academy.loren.file.command.line;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,6 +11,12 @@ import java.util.Enumeration;
 import java.util.Properties;
 import java.util.Scanner;
 
+/**
+ * Editing file content
+ *
+ * @author LorenIvanov
+ *
+ */
 public class FileComandLineHomework {
 
 	private Scanner userInput = new Scanner(System.in);
@@ -79,8 +85,10 @@ public class FileComandLineHomework {
 	/**
 	 * fileContentReplace's help method to check if file contents the requested
 	 * word
-	 */
-
+	 * 
+	 * @param enumeration
+	 *            - gets Properties key values
+	 * */
 	private void checkContent(Enumeration enumeration) {
 		String keyValue;
 		for (; enumeration.hasMoreElements();) {
@@ -97,6 +105,9 @@ public class FileComandLineHomework {
 
 	/**
 	 * fileContentReplace's help method to fill the Property variable
+	 * 
+	 * @param userChoise
+	 *            - number of pairs user is going to enter
 	 */
 
 	private void fillPropertyVariable(int userChoise) {

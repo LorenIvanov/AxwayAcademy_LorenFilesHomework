@@ -1,4 +1,4 @@
-package com.axway.academy.loren;
+package com.axway.academy.loren.communication.protocols;
 
 import java.io.IOException;
 import java.net.Authenticator;
@@ -23,11 +23,6 @@ import javax.net.ssl.X509TrustManager;
  * 
  */
 public class JavaWithHTTPCommunicationProtocolsHomework {
-
-	public JavaWithHTTPCommunicationProtocolsHomework() {
-		SSSLHandshake();
-		connectingToGoogle();
-	}
 
 	/**
 	 * Connecting to www.google.bg and getting response
@@ -64,7 +59,9 @@ public class JavaWithHTTPCommunicationProtocolsHomework {
 	 * Writes to file
 	 * 
 	 * @param statusCode
+	 *            - status code
 	 * @param responseMessage
+	 *            - response message
 	 */
 	private void writeToFile(int statusCode, String responseMessage) {
 		Path filePath = Paths.get("googleResponse.txt");
@@ -123,8 +120,16 @@ public class JavaWithHTTPCommunicationProtocolsHomework {
 		});
 	}
 
+	/**
+	 * Creating an instance of JavaWithHTTPCommunicationProtocolsHomework class
+	 * and working with its methods
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
-		new JavaWithHTTPCommunicationProtocolsHomework();
+		JavaWithHTTPCommunicationProtocolsHomework obj = new JavaWithHTTPCommunicationProtocolsHomework();
+		obj.SSSLHandshake();
+		obj.connectingToGoogle();
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.axway.academy.loren;
+package com.axway.academy.loren.communication.protocols;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,30 +20,16 @@ import org.apache.commons.net.ftp.FTPFile;
 public class JavaWithFTPCommunicationProtocolsHomework {
 
 	private Scanner userInput = new Scanner(System.in);
-	FTPClient client = null;
+	private static FTPClient client = null;
 
-	// login credentials
+	/**
+	 * Initialization credentials
+	 */
 	private String server = "localhost";
 	private String username = "LorenServer";
 	private String password = "123";
 
 	public JavaWithFTPCommunicationProtocolsHomework() {
-		try {
-			FTPConnection();
-			CRUDmenu();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (client != null && client.isConnected()) {
-				try {
-					client.disconnect();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
 	}
 
 	/**
@@ -188,12 +174,28 @@ public class JavaWithFTPCommunicationProtocolsHomework {
 	}
 
 	/**
-	 * Creates JavaWithCommunicationProtocolsHomeworkTwo object
+	 * Creating an instance of JavaWithFTPCommunicationProtocolsHomework class
+	 * and working with its methods
 	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new JavaWithFTPCommunicationProtocolsHomework();
+		JavaWithFTPCommunicationProtocolsHomework obj = new JavaWithFTPCommunicationProtocolsHomework();
+		try {
+			obj.FTPConnection();
+			obj.CRUDmenu();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (client != null && client.isConnected()) {
+				try {
+					client.disconnect();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
-
 }
