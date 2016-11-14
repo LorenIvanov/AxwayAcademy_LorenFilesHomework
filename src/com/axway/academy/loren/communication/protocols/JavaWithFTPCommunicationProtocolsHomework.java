@@ -19,17 +19,30 @@ import org.apache.commons.net.ftp.FTPFile;
  */
 public class JavaWithFTPCommunicationProtocolsHomework {
 
-	private Scanner userInput = new Scanner(System.in);
+	private static Scanner USER_INPUT = new Scanner(System.in);
 	private FTPClient client = null;
 
 	/**
 	 * Initialization credentials
 	 */
-	private String server = "localhost";
-	private String username = "LorenServer";
-	private String password = "123";
+	private static String SERVER = null; // "localhost";
+	private static String USERNAME = null; // "LorenServer";
+	private static String PASSWORD = null; // "123";
+	private static int PORT;
+
+	/**
+	 * Class constructor initializing server address, username and password
+	 */
 
 	public JavaWithFTPCommunicationProtocolsHomework() {
+		System.out.print("Please enter server address: ");
+		SERVER = USER_INPUT.nextLine();
+		System.out.print("Please enter username: ");
+		USERNAME = USER_INPUT.nextLine();
+		System.out.print("Please enter password: ");
+		PASSWORD = USER_INPUT.nextLine();
+		System.out.print("Please enter port: ");
+		PORT = userIntegerInputCheck();
 	}
 
 	/**
@@ -38,7 +51,7 @@ public class JavaWithFTPCommunicationProtocolsHomework {
 	 * @throws IOException
 	 * @throws Exception
 	 */
-	protected void CRUDmenu() throws IOException, Exception {
+	protected void menuCRUD() throws IOException, Exception {
 		boolean menuCycle = true;
 		System.out.println("This is CRUD menu. Please select an option.");
 		System.out.println("1. List files inside the directory.");
@@ -47,7 +60,7 @@ public class JavaWithFTPCommunicationProtocolsHomework {
 		System.out.println("4. Delete file.");
 		System.out.println("0. Exit.");
 		int userChoise = 0;
-		userChoise = userIntegerInputCheck(userChoise);
+		userChoise = userIntegerInputCheck();
 		switch (userChoise) {
 		case 1:
 			listFiles();
@@ -65,27 +78,26 @@ public class JavaWithFTPCommunicationProtocolsHomework {
 			menuCycle = false;
 			break;
 		default:
-			CRUDmenu();
+			menuCRUD();
 			break;
 		}
 		if (menuCycle) {
-			CRUDmenu();
+			menuCRUD();
 		}
 	}
 
 	/**
 	 * Validates user input
 	 * 
-	 * @param userChoise
-	 * @return
+	 * @return validated integer
 	 */
-	private int userIntegerInputCheck(int userChoise) {
-		while (!userInput.hasNextInt()) {
+	private int userIntegerInputCheck() {
+		while (!USER_INPUT.hasNextInt()) {
 			System.out.println("Please enter valid number.");
-			userInput.next();
+			USER_INPUT.next();
 		}
-		userChoise = userInput.nextInt();
-		userInput.nextLine();
+		int userChoise = USER_INPUT.nextInt();
+		USER_INPUT.nextLine();
 		return userChoise;
 	}
 
@@ -98,7 +110,7 @@ public class JavaWithFTPCommunicationProtocolsHomework {
 	private void deleteFile() throws IOException, Exception {
 		System.out.println("Choose file to delete:");
 		listFiles();
-		String fileToDelete = userInput.nextLine();
+		String fileToDelete = USER_INPUT.nextLine();
 		boolean success = client.deleteFile(fileToDelete);
 		System.out.println(success ? "Succeed to delete " + fileToDelete
 				: "Deleting failed");
@@ -113,8 +125,10 @@ public class JavaWithFTPCommunicationProtocolsHomework {
 	private void uploadFile() throws IOException, Exception {
 		System.out
 				.println("Enter the location of the file you want to upload.");
-		String fileName = userInput.nextLine();
+		String fileName = USER_INPUT.nextLine();
 		InputStream in = new FileInputStream(fileName);
+		int beginIndex = fileName.lastIndexOf('\\');
+		fileName = fileName.substring(beginIndex + 1, fileName.length());
 		boolean success = client.storeFile(fileName, in);
 		// boolean success = client.appendFile(fileName, in);
 		System.out.println(success ? "Succeed to upload " + fileName
@@ -132,7 +146,7 @@ public class JavaWithFTPCommunicationProtocolsHomework {
 	 */
 	private void downloadFile() throws IOException, Exception {
 		System.out.println("Enter the name of the file you want to download.");
-		String fileName = userInput.nextLine();
+		String fileName = USER_INPUT.nextLine();
 		OutputStream out = new FileOutputStream(new File(fileName));
 		boolean success = client.retrieveFile(fileName, out);
 		System.out.println(success ? "Succeed to download " + fileName
@@ -165,12 +179,13 @@ public class JavaWithFTPCommunicationProtocolsHomework {
 	 * @throws IOException
 	 * @throws Exception
 	 */
-	private void FTPConnection() throws IOException, Exception {
+	private void ftpConnection() throws IOException, Exception {
 		client = new FTPClient();
+		client.connect(SERVER, PORT);
 
 		// connect to the server and authenticate
-		client.connect(server);
-		client.login(username, password);
+		client.connect(SERVER);
+		client.login(USERNAME, PASSWORD);
 	}
 
 	/**
@@ -179,11 +194,13 @@ public class JavaWithFTPCommunicationProtocolsHomework {
 	 */
 	protected void execute() {
 		try {
-			FTPConnection();
-			CRUDmenu();
+			ftpConnection();
+			menuCRUD();
 		} catch (IOException e) {
+			System.out.println("Handeled IOException!");
 			e.printStackTrace();
 		} catch (Exception e) {
+			System.out.println("Handeled Exception!");
 			e.printStackTrace();
 		} finally {
 			if (client != null && client.isConnected()) {

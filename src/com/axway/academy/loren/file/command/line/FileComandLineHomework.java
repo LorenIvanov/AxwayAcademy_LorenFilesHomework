@@ -72,9 +72,10 @@ public class FileComandLineHomework {
 
 	/**
 	 * Validates user input
+	 * 
+	 * @return the userChoise
 	 */
-
-	private int userIntegerInputCheck() {
+	protected int userIntegerInputCheck() {
 		int userChoise = 0;
 		while (!userInput.hasNextInt()) {
 			System.out.println("Please enter valid number.");
@@ -188,8 +189,9 @@ public class FileComandLineHomework {
 
 	/**
 	 * writeToFile's help method to generate new file name
+	 * 
+	 * @return the newFileName
 	 */
-
 	private String newFileName() {
 		String newFileName = "", fileName;
 		fileValidation = FILE_LOCATION.split("\\.");
@@ -211,4 +213,95 @@ public class FileComandLineHomework {
 		obj.execute();
 
 	}
+
+	/**
+	 * @return the userInput
+	 */
+	public Scanner getUserInput() {
+		return userInput;
+	}
+
+	/**
+	 * @param userInput
+	 *            the userInput to set
+	 */
+	public void setUserInput(Scanner userInput) {
+		this.userInput = userInput;
+	}
+
+	/**
+	 * @return the fileContent
+	 */
+	public String getFileContent() {
+		return fileContent;
+	}
+
+	/**
+	 * @param fileContent
+	 *            the fileContent to set
+	 */
+	public void setFileContent(String fileContent) {
+		this.fileContent = fileContent;
+	}
+
+	/**
+	 * @return the fILE_LOCATION
+	 */
+	public static String getFILE_LOCATION() {
+		return FILE_LOCATION;
+	}
+
+	/**
+	 * @param fILE_LOCATION
+	 *            the fILE_LOCATION to set
+	 */
+	public static void setFILE_LOCATION(String fILE_LOCATION) {
+		FILE_LOCATION = fILE_LOCATION;
+	}
+
+	/**
+	 * @return the fileValidation
+	 */
+	public String[] getFileValidation() {
+		return fileValidation;
+	}
+
+	/**
+	 * @param fileValidation
+	 *            the fileValidation to set
+	 */
+	public void setFileValidation(String[] fileValidation) {
+		this.fileValidation = fileValidation;
+	}
+
+	/**
+	 * @return the file
+	 */
+	public Path getFile() {
+		return file;
+	}
+
+	/**
+	 * @param file
+	 *            the file to set
+	 */
+	public void setFile(Path file) {
+		this.file = file;
+	}
+
+	/**
+	 * @return the replacePairs
+	 */
+	public Properties getReplacePairs() {
+		return replacePairs;
+	}
+
+	/**
+	 * @param replacePairs
+	 *            the replacePairs to set
+	 */
+	public void setReplacePairs(Properties replacePairs) {
+		this.replacePairs = replacePairs;
+	}
+
 }
