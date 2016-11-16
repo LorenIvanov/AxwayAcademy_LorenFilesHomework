@@ -207,6 +207,7 @@ public class JavaWithFTPCommunicationProtocolsHomework {
 				try {
 					client.disconnect();
 				} catch (IOException e) {
+					System.out.println("IOException :( .");
 					e.printStackTrace();
 				}
 			}

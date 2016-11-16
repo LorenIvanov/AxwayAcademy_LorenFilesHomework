@@ -114,7 +114,7 @@ public class FileComandLineHomework {
 	 *            - number of pairs user is going to enter
 	 */
 
-	private void fillPropertyVariable(int userChoise) {
+	protected void fillPropertyVariable(int userChoise) {
 		String wordToReplace;
 		String newWord;
 		for (int i = 1; i < userChoise + 1; i++) {
@@ -128,7 +128,6 @@ public class FileComandLineHomework {
 				readFile();
 			}
 		}
-
 	}
 
 	/**
