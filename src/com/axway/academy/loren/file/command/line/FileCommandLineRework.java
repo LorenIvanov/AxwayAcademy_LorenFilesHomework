@@ -277,6 +277,7 @@ public class FileCommandLineRework extends FileComandLineHomework {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		// Factory write and read
 		FileCommandLineRework obj = new FileCommandLineRework();
 		obj.execute();
 	}
