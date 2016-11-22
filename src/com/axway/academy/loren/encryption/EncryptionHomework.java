@@ -100,6 +100,8 @@ public class EncryptionHomework {
 	}
 
 	/**
+	 * Prints encrypted content of the file and the encrypted key
+	 * 
 	 * @param fileLocation
 	 *            - where is the file on the system
 	 * 
@@ -133,6 +135,8 @@ public class EncryptionHomework {
 	}
 
 	/**
+	 * Encrypting key to file
+	 * 
 	 * @param randomStringKey
 	 *            - key for encrypting
 	 * @throws Exception
@@ -340,6 +344,8 @@ public class EncryptionHomework {
 	}
 
 	/**
+	 * Decrypts key from file
+	 * 
 	 * @return - decrypted key
 	 */
 	private String decryptingKey() {
